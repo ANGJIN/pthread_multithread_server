@@ -100,13 +100,15 @@ int main(int argc, char **argv) {
     }
 
     // create threads to thread pool
-    pthread_t service_thr;
+    pthread_t *worker_thr;
+
+    worker_thr = (pthread_t*)malloc(sizeof(pthread_t)*pool_size);
 
     pthread_mutex_init(&mutex, NULL);
     pthread_cond_init(&cond, NULL);
 
     for (i = 0; i < pool_size; i++) {
-        if (pthread_create(&service_thr, NULL, worker_job, i)) {
+        if (pthread_create(&worker_thr[i], NULL, worker_job, i)) {
             printf("ERROR: error while creating thread\n");
             return -1;
         }
@@ -128,7 +130,11 @@ int main(int argc, char **argv) {
             pthread_cond_signal(&cond);
         }
     }
-    pthread_join(service_thr, NULL);
+
+    for(i=0; i<pool_size;i++) {
+        pthread_join(worker_thr[i], NULL);
+    }
+
     return 0;
 }
 
