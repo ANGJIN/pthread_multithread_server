@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/youngjin/Google Drive/Docs/병렬분산컴퓨팅 (1)/project2/multithreading_server/server.c
+stdio.h
+-
+sys/socket.h
+-
+sys/stat.h
+-
+netinet/in.h
+-
+pthread.h
+-
+stdlib.h
+-
+string.h
+-
+unistd.h
+-
+dirent.h
+-
+ctype.h
+-
+time.h
+-
+

@@ -1,0 +1,4 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/Users/youngjin/Google Drive/Docs/병렬분산컴퓨팅 (1)/project2/multithreading_server"
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/youngjin/Google Drive/Docs/병렬분산컴퓨팅 (1)/project2/multithreading_server/cmake-build-debug
