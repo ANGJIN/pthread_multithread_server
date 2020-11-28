@@ -73,11 +73,12 @@ void *worker_job(int tid) {
     struct sockaddr_in cli_addr;
     int clien=sizeof(cli_addr);
     char req[1000];
+    int recv_cnt;
 
     for(i=0; i<rep; i++) {
 
         sleep(rand()%5);
-
+        recv_cnt=0;
         // create socket
         if ((cli_socket = socket(PF_INET, SOCK_STREAM, 0)) == -1) {
             printf("ERROR: error while creating socket\n");
@@ -101,10 +102,12 @@ void *worker_job(int tid) {
         char c;
         while(read(cli_socket,&c,1)>0) {
             fputc(c,stdout);
+            recv_cnt++;
         }
 
         close(cli_socket);
-        printf("thread %d finish %d/%d\n",tid, i+1,rep);
+        printf("thread %d finish %d/%d\n\
+        received %d bytes\n",tid, i+1,rep,recv_cnt);
 
     }
 }
