@@ -73,6 +73,7 @@ CMAKE_BINARY_DIR = "/Users/youngjin/Google Drive/Docs/병렬분산컴퓨팅 (1)/
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
+all: CMakeFiles/server_epoll.dir/all
 all: CMakeFiles/client.dir/all
 all: CMakeFiles/server.dir/all
 
@@ -84,10 +85,38 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
+clean: CMakeFiles/server_epoll.dir/clean
 clean: CMakeFiles/client.dir/clean
 clean: CMakeFiles/server.dir/clean
 
 .PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/server_epoll.dir
+
+# All Build rule for target.
+CMakeFiles/server_epoll.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server_epoll.dir/build.make CMakeFiles/server_epoll.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server_epoll.dir/build.make CMakeFiles/server_epoll.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/youngjin/Google Drive/Docs/병렬분산컴퓨팅 (1)/project2/multithreading_server/cmake-build-debug/CMakeFiles" --progress-num=5,6 "Built target server_epoll"
+.PHONY : CMakeFiles/server_epoll.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/server_epoll.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/youngjin/Google Drive/Docs/병렬분산컴퓨팅 (1)/project2/multithreading_server/cmake-build-debug/CMakeFiles" 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/server_epoll.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/youngjin/Google Drive/Docs/병렬분산컴퓨팅 (1)/project2/multithreading_server/cmake-build-debug/CMakeFiles" 0
+.PHONY : CMakeFiles/server_epoll.dir/rule
+
+# Convenience name for target.
+server_epoll: CMakeFiles/server_epoll.dir/rule
+
+.PHONY : server_epoll
+
+# clean rule for target.
+CMakeFiles/server_epoll.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server_epoll.dir/build.make CMakeFiles/server_epoll.dir/clean
+.PHONY : CMakeFiles/server_epoll.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/client.dir

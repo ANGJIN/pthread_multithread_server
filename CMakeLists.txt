@@ -5,3 +5,4 @@ set(CMAKE_C_STANDARD 99)
 
 add_executable(server server.c)
 add_executable(client client.c)
+add_executable(server_epoll server_epoll.c)
