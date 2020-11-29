@@ -20,6 +20,7 @@ int file_num = 0;
 void *worker_job(int tid);
 
 int main(int argc, char** argv) {
+    clock_t startTime, endTime;
     int num_thread, i;
     FILE * fp;
 
@@ -32,6 +33,8 @@ int main(int argc, char** argv) {
     rep = atoi(argv[2]);
 
     srand((time(NULL)));
+
+    startTime = clock();
 
     fp = fopen(argv[3],"r");
     if(fp == NULL) {
@@ -64,6 +67,10 @@ int main(int argc, char** argv) {
     for(i=0; i<num_thread; i++) {
         pthread_join(worker_thr[i], NULL);
     }
+
+    endTime = clock();
+    double executeTime = (double)(endTime - startTime) / CLOCKS_PER_SEC;
+    printf("total execute time : %f\n", executeTime);
     return 0;
 }
 
@@ -109,5 +116,6 @@ void *worker_job(int tid) {
         printf("thread %d finish %d/%d\n\
         received %d bytes\n",tid, i+1,rep,recv_cnt);
     }
+    printf("thread %d exit\n", tid);
 	pthread_exit((void*)0);
 }
