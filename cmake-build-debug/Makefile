@@ -131,19 +131,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named server_epoll
-
-# Build rule for target.
-server_epoll: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 server_epoll
-.PHONY : server_epoll
-
-# fast build rule for target.
-server_epoll/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server_epoll.dir/build.make CMakeFiles/server_epoll.dir/build
-.PHONY : server_epoll/fast
-
-#=============================================================================
 # Target rules for targets named client
 
 # Build rule for target.
@@ -223,33 +210,6 @@ server.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server.c.s
 .PHONY : server.c.s
 
-server_epoll.o: server_epoll.c.o
-
-.PHONY : server_epoll.o
-
-# target to build an object file
-server_epoll.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server_epoll.dir/build.make CMakeFiles/server_epoll.dir/server_epoll.c.o
-.PHONY : server_epoll.c.o
-
-server_epoll.i: server_epoll.c.i
-
-.PHONY : server_epoll.i
-
-# target to preprocess a source file
-server_epoll.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server_epoll.dir/build.make CMakeFiles/server_epoll.dir/server_epoll.c.i
-.PHONY : server_epoll.c.i
-
-server_epoll.s: server_epoll.c.s
-
-.PHONY : server_epoll.s
-
-# target to generate assembly for a file
-server_epoll.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server_epoll.dir/build.make CMakeFiles/server_epoll.dir/server_epoll.c.s
-.PHONY : server_epoll.c.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -260,16 +220,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... client"
 	@echo "... server"
-	@echo "... server_epoll"
 	@echo "... client.o"
 	@echo "... client.i"
 	@echo "... client.s"
 	@echo "... server.o"
 	@echo "... server.i"
 	@echo "... server.s"
-	@echo "... server_epoll.o"
-	@echo "... server_epoll.i"
-	@echo "... server_epoll.s"
 .PHONY : help
 
 

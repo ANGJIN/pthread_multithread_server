@@ -9,6 +9,7 @@
 #include <dirent.h>
 #include <ctype.h>
 #include <time.h>
+#include <errno.h>
 
 #define MAX_POOL_SIZE 1024
 
@@ -21,7 +22,8 @@ pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
 typedef struct myNode *npt;
 typedef struct myNode {
-    int val;
+    int client_socket;
+    char command[1000];
     npt next;
 } node;
 
@@ -34,10 +36,12 @@ int isEmpty() {
     return 0;
 }
 
-void enqueue(int socket) {
+void enqueue(int socket, char* command) {
     npt new = (npt) malloc(sizeof(node));
-    new->val = socket;
+    new->client_socket = socket;
     new->next = NULL;
+    strcpy(new->command, command);
+
     if (isEmpty()) {
         head = tail = new;
     } else {
@@ -45,15 +49,14 @@ void enqueue(int socket) {
     }
 }
 
-int dequeue() {
+npt dequeue() {
     if (isEmpty())
-        return -1;
+        return NULL;
 
     npt top = head;
-    int val = top->val;
     head = top->next;
-    free(top);
-    return val;
+
+    return top;
 }
 
 int main(int argc, char **argv) {
@@ -82,7 +85,7 @@ int main(int argc, char **argv) {
 
     // bind socket with address
     struct sockaddr_in serv_addr;
-    int one=1;
+    int one = 1;
     memset(&serv_addr, 0, sizeof(struct sockaddr_in));
     serv_addr.sin_family = AF_INET;
     serv_addr.sin_addr.s_addr = htonl(INADDR_ANY);
@@ -102,7 +105,7 @@ int main(int argc, char **argv) {
     // create threads to thread pool
     pthread_t *worker_thr;
 
-    worker_thr = (pthread_t*)malloc(sizeof(pthread_t)*pool_size);
+    worker_thr = (pthread_t *) malloc(sizeof(pthread_t) * pool_size);
 
     pthread_mutex_init(&mutex, NULL);
     pthread_cond_init(&cond, NULL);
@@ -119,6 +122,7 @@ int main(int argc, char **argv) {
     int client_socket;
     socklen_t clien;
     struct sockaddr_in cli_addr;
+    char command[1000];
 
     while (1) {
         clien = sizeof(cli_addr);
@@ -127,41 +131,41 @@ int main(int argc, char **argv) {
             printf("connection to client failed\n");
             continue;
         } else {
-            enqueue(client_socket);
+            memset(command, 0, sizeof(command));
+            int val = read(client_socket, command, sizeof(command));
+            if (val <= 0) {
+                perror("ERROR: error while receive client's request\n");
+                close(client_socket);
+                exit(0);
+            }
+            enqueue(client_socket, command);
             pthread_cond_signal(&cond);
         }
     }
-
-//    for(i=0; i<pool_size;i++) {
-//        pthread_join(worker_thr[i], NULL);
-//    }
-
     return 0;
 }
 
 
 void *worker_job(int tid) {
-    char command[10000];
     printf("create thread %d\n", tid);
     int client_socket;
+    npt entry;
     while (1) {
         pthread_mutex_lock(&mutex);
         while (isEmpty()) {
             printf("thread %d wait\n", tid);
             pthread_cond_wait(&cond, &mutex);
             printf("thread %d up!\n", tid);
-            client_socket = dequeue();
-            if (client_socket > 0)
-                break;
         }
+        entry = dequeue();
         pthread_mutex_unlock(&mutex);
-        memset(command, 0, 10000);
 
-        read(client_socket, command, 10000);
-        printf("client req : %s\n", command);
-        httpd(command, client_socket);
+        client_socket = entry->client_socket;
+        printf("client req : %s", entry->command);
+        httpd(entry->command, client_socket);
 
         close(client_socket);
+        free(entry);
         printf("thread %d finish\n", tid);
     }
     pthread_exit(0);
@@ -215,16 +219,17 @@ httpd(char *command, int socket) {
         return;
     }
 
+    // make file path of requested file
     file = &(path[1]);
     strdecode(file, file);
     if (file[0] == '\0') {
         file = "./";
     } else {
-        strcat(tmp_path, file);
+        strcat(tmp_path, file); // concatenate filename with default path
         strcpy(path, tmp_path);
         file = path + strlen(PATH_DEFAULT);
     }
-    printf("path : %s\nfile : %s\n", path, file);
+//    printf("path : %s\nfile : %s\n", path, file);
 
     len = strlen(file);
     if (file[0] == '/' || strcmp(file, "..") == 0 || strncmp(file, "../", 3) == 0 ||
