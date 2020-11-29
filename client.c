@@ -59,11 +59,12 @@ int main(int argc, char** argv) {
             printf("ERROR: error while creating thread\n");
             return -1;
         }
+        pthread_detach(worker_thr[i]);
     }
 
-    for(i=0; i<num_thread; i++) {
-        pthread_join(worker_thr[i], NULL);
-    }
+//    for(i=0; i<num_thread; i++) {
+//        pthread_join(worker_thr[i], NULL);
+//    }
     return 0;
 }
 

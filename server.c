@@ -112,6 +112,7 @@ int main(int argc, char **argv) {
             printf("ERROR: error while creating thread\n");
             return -1;
         }
+        pthread_detach(worker_thr[i]);
     }
 
     // loop infinitely and accept client
@@ -131,9 +132,9 @@ int main(int argc, char **argv) {
         }
     }
 
-    for(i=0; i<pool_size;i++) {
-        pthread_join(worker_thr[i], NULL);
-    }
+//    for(i=0; i<pool_size;i++) {
+//        pthread_join(worker_thr[i], NULL);
+//    }
 
     return 0;
 }
@@ -163,6 +164,7 @@ void *worker_job(int tid) {
         close(client_socket);
         printf("thread %d finish\n", tid);
     }
+    pthread_exit(0);
 }
 
 #define SERVER_NAME "ANGJIN"
