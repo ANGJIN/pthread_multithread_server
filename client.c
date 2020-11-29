@@ -101,7 +101,7 @@ void *worker_job(int tid) {
 
         char c;
         while(read(cli_socket,&c,1)>0) {
-            fputc(c,stdout);
+            //fputc(c,stdout);
             recv_cnt++;
         }
 
