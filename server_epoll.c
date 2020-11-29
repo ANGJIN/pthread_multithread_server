@@ -71,7 +71,8 @@ int main(int argc, char **argv) {
         printf("ERROR: error while start listening socket\n");
         return -1;
     }
-
+	
+	// create epoll
     epoll_fd = epoll_create(EPOLL_SIZE);
     if(epoll_fd<0) {
         printf("ERROR: error while creating epoll\n");
@@ -88,7 +89,6 @@ int main(int argc, char **argv) {
 
     // create worker threads to thread pool
     pthread_t *worker_thr;
-
     worker_thr = (pthread_t*)malloc(sizeof(pthread_t)*pool_size);
 
     pthread_mutex_init(&mutex, NULL);
@@ -120,6 +120,7 @@ void *worker_job(int tid) {
             printf("ERROR: error while epoll_wait\n");
             exit(-1);
         } else {
+			printf("thread %d receive %d events\n", tid, event_count);
             for(i=0; i<event_count; i++) {
                 if(epoll_events[i].data.fd == serv_socket) /* Accept */ {
                     int client_fd;
@@ -130,7 +131,7 @@ void *worker_job(int tid) {
                     pthread_mutex_lock(&mutex);
                     client_fd = accept(serv_socket, (struct sockaddr*)&client_addr, &client_len);
                     pthread_mutex_unlock(&mutex);
-
+					printf("client accepted at fd : %d\n", client_fd);
                     int flags = fcntl(client_fd, F_GETFL);
                     fcntl(client_fd,F_SETFL, flags | O_NONBLOCK);
 
@@ -139,7 +140,7 @@ void *worker_job(int tid) {
                     client_events.data.fd = client_fd;
 
                     // add client fd to epoll
-                    if(epoll_ctl(epoll_fd, EPOLL_CTL_ADD, client_fd, &events) <0) {
+                    if(epoll_ctl(epoll_fd, EPOLL_CTL_ADD, client_fd, &client_events) <0) {
                         printf("ERROR: error while add client_fd to epoll\n");
                         exit(-1);
                     }
@@ -149,7 +150,7 @@ void *worker_job(int tid) {
 
                     if(read(client_fd, &buf, sizeof(buf))==0) { /* disconnect */
                         close(client_fd);
-                        epoll_ctl(epoll_fd, EPOLL_CTL_DEL, client_fd, NULL;
+                        epoll_ctl(epoll_fd, EPOLL_CTL_DEL, client_fd, NULL);
                     } else { /* process request */
                         memset(command, 0, 10000);
 

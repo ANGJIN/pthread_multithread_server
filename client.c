@@ -108,6 +108,6 @@ void *worker_job(int tid) {
         close(cli_socket);
         printf("thread %d finish %d/%d\n\
         received %d bytes\n",tid, i+1,rep,recv_cnt);
-
     }
+	pthread_exit((void*)0);
 }
