@@ -9,7 +9,7 @@
 #include <unistd.h>
 
 #define MAX_FILE_N 100
-#define PORT_DEFAULT 80
+#define PORT_DEFAULT 4000
 #define IP_DEFAULT "http://127.0.0.1"
 int file_n, rep;
 char req_files[MAX_FILE_N][100];
