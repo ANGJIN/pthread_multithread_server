@@ -113,12 +113,12 @@ void *worker_job(int tid) {
 
         printf("thread %d start receive\n", tid);
         int recv_len=0, recv_cnt;
-
         while ((recv_cnt = recv(cli_socket,res, sizeof(res), 0)) > 0) {
             //fputc(res,stdout);
             recv_len+=recv_cnt;
         }
         printf("thread %d finish %d/%d received %d bytes\n", tid, i + 1, rep, recv_len);
+
     }
     printf("thread %d exit\n", tid);
     close(cli_socket);

@@ -109,12 +109,13 @@ int main(int argc, char **argv) {
 
 
 void *worker_job(int tid) {
-    char command[10000];
+    char command[1000];
     int event_count, timeout = -1, i;
     struct epoll_event epoll_events[MAX_EVENTS];
 
     printf("create thread %d\n", tid);
     while (1) {
+        printf("thread %d wait\n", tid);
         event_count = epoll_wait(epoll_fd, epoll_events, MAX_EVENTS, timeout);
         if (event_count < 0) {
             printf("ERROR: error while epoll_wait\n");
@@ -128,9 +129,9 @@ void *worker_job(int tid) {
                 socklen_t client_len = sizeof(client_addr);
 
                 // accept connection and get client fd
-                pthread_mutex_lock(&mutex);
+//                pthread_mutex_lock(&mutex);
                 client_fd = accept(serv_socket, (struct sockaddr *) &client_addr, &client_len);
-                pthread_mutex_unlock(&mutex);
+//                pthread_mutex_unlock(&mutex);
                 printf("client accepted at fd : %d\n", client_fd);
                 int flags = fcntl(client_fd, F_GETFL);
                 fcntl(client_fd, F_SETFL, flags | O_NONBLOCK);
