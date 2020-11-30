@@ -110,7 +110,7 @@ int main(int argc, char **argv) {
 
 void *worker_job(int tid) {
     char command[10000];
-    int client_socket, event_count, timeout = -1, i;
+    int event_count, timeout = -1, i;
     struct epoll_event epoll_events[MAX_EVENTS];
 
     printf("create thread %d\n", tid);
@@ -155,7 +155,7 @@ void *worker_job(int tid) {
 
                 } else { /* process request */
                     printf("client req : %s\n", buf);
-                    httpd(buf, client_socket);
+                    httpd(buf, client_fd);
 
                     printf("thread %d finish\n", tid);
                 }
