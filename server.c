@@ -81,6 +81,7 @@ int main(int argc, char **argv) {
         return -1;
     }
 
+    // file descriptor size increase
     struct rlimit rlp;
 
     getrlimit(RLIMIT_NOFILE, &rlp);

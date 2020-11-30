@@ -35,16 +35,17 @@ int main(int argc, char **argv) {
     num_thread = atoi(argv[1]);
     rep = atoi(argv[2]);
 
-    struct rlimit rlp;
-
-    getrlimit(RLIMIT_NOFILE, &rlp);
-    printf("before %d %d\n", rlp.rlim_cur, rlp.rlim_max);
-
-    rlp.rlim_cur = 2048;
-    setrlimit(RLIMIT_NOFILE, &rlp);
-
-    getrlimit(RLIMIT_NOFILE, &rlp);
-    printf("after %d %d\n", rlp.rlim_cur, rlp.rlim_max);
+    // file descriptor size increase
+//    struct rlimit rlp;
+//
+//    getrlimit(RLIMIT_NOFILE, &rlp);
+//    printf("before %d %d\n", rlp.rlim_cur, rlp.rlim_max);
+//
+//    rlp.rlim_cur = 2048;
+//    setrlimit(RLIMIT_NOFILE, &rlp);
+//
+//    getrlimit(RLIMIT_NOFILE, &rlp);
+//    printf("after %d %d\n", rlp.rlim_cur, rlp.rlim_max);
 
     srand((time(NULL)));
 
