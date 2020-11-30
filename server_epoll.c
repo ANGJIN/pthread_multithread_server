@@ -48,8 +48,8 @@ int main(int argc, char **argv) {
     }
 
     // socket option setting
-    int one=1;
-    if(setsockopt(serv_socket, SOL_SOCKET, SO_REUSEADDR, (char *) &one, sizeof(one))<0) {
+    int one = 1;
+    if (setsockopt(serv_socket, SOL_SOCKET, SO_REUSEADDR, (char *) &one, sizeof(one)) < 0) {
         printf("ERROR: error while set socket option\n");
         return -1;
     }
@@ -71,25 +71,25 @@ int main(int argc, char **argv) {
         printf("ERROR: error while start listening socket\n");
         return -1;
     }
-	
-	// create epoll
+
+    // create epoll
     epoll_fd = epoll_create(EPOLL_SIZE);
-    if(epoll_fd<0) {
+    if (epoll_fd < 0) {
         printf("ERROR: error while creating epoll\n");
         return -1;
     }
 
-    // set server socket to epoll
+    // add server socket to epoll
     struct epoll_event events;
     events.events = EPOLLIN;
     events.data.fd = serv_socket;
-    if(epoll_ctl(epoll_fd, EPOLL_CTL_ADD, serv_socket, &events)<0) {
+    if (epoll_ctl(epoll_fd, EPOLL_CTL_ADD, serv_socket, &events) < 0) {
         printf("ERROR: error while set server socket to epoll");
     }
 
     // create worker threads to thread pool
     pthread_t *worker_thr;
-    worker_thr = (pthread_t*)malloc(sizeof(pthread_t)*pool_size);
+    worker_thr = (pthread_t *) malloc(sizeof(pthread_t) * pool_size);
 
     pthread_mutex_init(&mutex, NULL);
 
@@ -98,68 +98,73 @@ int main(int argc, char **argv) {
             printf("ERROR: error while creating thread\n");
             return -1;
         }
-        pthread_detach(worker_thr[i]);
     }
+
+    for (i = 0; i < pool_size; i++) {
+        pthread_join(worker_thr[i], NULL);
+    }
+
     return 0;
 }
 
 
 void *worker_job(int tid) {
     char command[10000];
-    int client_socket, event_count, timeout=-1, i;
+    int client_socket, event_count, timeout = -1, i;
     struct epoll_event epoll_events[MAX_EVENTS];
 
     printf("create thread %d\n", tid);
-    while(1) {
-        event_count = epoll_wait(epoll_fd, epoll_events,MAX_EVENTS, timeout);
-        if(event_count<0) {
+    while (1) {
+        event_count = epoll_wait(epoll_fd, epoll_events, MAX_EVENTS, timeout);
+        if (event_count < 0) {
             printf("ERROR: error while epoll_wait\n");
             exit(-1);
-        } else {
-			printf("thread %d receive %d events\n", tid, event_count);
-            for(i=0; i<event_count; i++) {
-                if(epoll_events[i].data.fd == serv_socket) /* Accept */ {
-                    int client_fd;
-                    struct sockaddr_in client_addr;
-                    socklen_t client_len =sizeof(client_addr);
+        }
+        printf("thread %d receive %d events\n", tid, event_count);
+        for (i = 0; i < event_count; i++) {
+            if (epoll_events[i].data.fd == serv_socket) /* Accept */ {
+                int client_fd;
+                struct sockaddr_in client_addr;
+                socklen_t client_len = sizeof(client_addr);
 
-                    // accept connection and get client fd
-                    pthread_mutex_lock(&mutex);
-                    client_fd = accept(serv_socket, (struct sockaddr*)&client_addr, &client_len);
-                    pthread_mutex_unlock(&mutex);
-					printf("client accepted at fd : %d\n", client_fd);
-                    int flags = fcntl(client_fd, F_GETFL);
-                    fcntl(client_fd,F_SETFL, flags | O_NONBLOCK);
+                // accept connection and get client fd
+                pthread_mutex_lock(&mutex);
+                client_fd = accept(serv_socket, (struct sockaddr *) &client_addr, &client_len);
+                pthread_mutex_unlock(&mutex);
+                printf("client accepted at fd : %d\n", client_fd);
+                int flags = fcntl(client_fd, F_GETFL);
+                fcntl(client_fd, F_SETFL, flags | O_NONBLOCK);
 
-                    struct epoll_event client_events;
-                    client_events.events = EPOLLIN;
-                    client_events.data.fd = client_fd;
+                struct epoll_event client_events;
+                client_events.events = EPOLLIN;
+                client_events.data.fd = client_fd;
 
-                    // add client fd to epoll
-                    if(epoll_ctl(epoll_fd, EPOLL_CTL_ADD, client_fd, &client_events) <0) {
-                        printf("ERROR: error while add client_fd to epoll\n");
-                        exit(-1);
-                    }
-                } else { /* Get reqeust */
-                    int client_fd = epoll_events[i].data.fd;
-                    char buf[10000];
+                // add client fd to epoll
+                if (epoll_ctl(epoll_fd, EPOLL_CTL_ADD, client_fd, &client_events) < 0) {
+                    printf("ERROR: error while add client_fd to epoll\n");
+                    exit(-1);
+                }
+            } else { /* Get reqeust */
+                int client_fd = epoll_events[i].data.fd;
+                char buf[10000];
 
-                    if(read(client_fd, &buf, sizeof(buf))==0) { /* disconnect */
-                        close(client_fd);
-                        epoll_ctl(epoll_fd, EPOLL_CTL_DEL, client_fd, NULL);
-                    } else { /* process request */
-                        memset(command, 0, 10000);
+                if (read(client_fd, &buf, sizeof(buf)) == 0) { /* disconnect */
+                    close(client_fd);
+                    epoll_ctl(epoll_fd, EPOLL_CTL_DEL, client_fd, NULL);
+                } else { /* process request */
+                    memset(command, 0, 10000);
 
-                        read(client_socket, command, 10000);
-                        printf("client req : %s\n", command);
-                        httpd(command, client_socket);
+                    read(client_socket, command, 10000);
+                    printf("client req : %s\n", command);
+                    httpd(command, client_socket);
 
-                        printf("thread %d finish\n", tid);
-                    }
+                    printf("thread %d finish\n", tid);
                 }
             }
         }
     }
+}
+
 }
 
 #define SERVER_NAME "ANGJIN"
