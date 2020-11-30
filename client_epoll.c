@@ -4,7 +4,6 @@
 #include <pthread.h>
 #include <string.h>
 #include <sys/socket.h>
-#include <sys/resource.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <unistd.h>
@@ -34,18 +33,6 @@ int main(int argc, char **argv) {
 
     num_thread = atoi(argv[1]);
     rep = atoi(argv[2]);
-
-    // file descriptor size increase
-//    struct rlimit rlp;
-//
-//    getrlimit(RLIMIT_NOFILE, &rlp);
-//    printf("before %d %d\n", rlp.rlim_cur, rlp.rlim_max);
-//
-//    rlp.rlim_cur = 2048;
-//    setrlimit(RLIMIT_NOFILE, &rlp);
-//
-//    getrlimit(RLIMIT_NOFILE, &rlp);
-//    printf("after %d %d\n", rlp.rlim_cur, rlp.rlim_max);
 
     srand((time(NULL)));
 
@@ -96,35 +83,29 @@ void *worker_job(int tid) {
     char req[1000];
     char res[1000];
 
+    // create socket
+    cli_socket = socket(PF_INET, SOCK_STREAM, 0);
+
+    if (cli_socket == -1) {
+        printf("ERROR: error while creating socket\n");
+        exit(-1);
+    }
+
+    // connect socket with address
+    memset(&cli_addr, 0, sizeof(cli_addr));
+    cli_addr.sin_family = AF_INET;
+    inet_pton(AF_INET, ip, &cli_addr.sin_addr);
+    cli_addr.sin_port = htons(port);
+
+    int err = connect(cli_socket, (struct sockaddr *) &cli_addr, sizeof(cli_addr));
+    if (err == -1) {
+        printf("ERROR: error while binding socket with address\n");
+        exit(-1);
+    }
+
     for (i = 0; i < rep; i++) {
         printf("thread %d start %d/%d\n", tid, i + 1, rep);
         sleep(rand() % 5);
-
-        // create socket
-//        pthread_mutex_lock(&mutex);
-        cli_socket = socket(PF_INET, SOCK_STREAM, 0);
-//        pthread_mutex_unlock(&mutex);
-
-        if (cli_socket == -1) {
-            printf("ERROR: error while creating socket\n");
-            exit(-1);
-        }
-
-
-        // connect socket with address
-        memset(&cli_addr, 0, sizeof(cli_addr));
-        cli_addr.sin_family = AF_INET;
-        inet_pton(AF_INET, ip, &cli_addr.sin_addr);
-        cli_addr.sin_port = htons(port);
-
-//        pthread_mutex_lock(&mutex);
-        int err = connect(cli_socket, (struct sockaddr *) &cli_addr, sizeof(cli_addr));
-//        pthread_mutex_unlock(&mutex);
-
-        if (err == -1) {
-            printf("ERROR: error while binding socket with address\n");
-            exit(-1);
-        }
 
         sprintf(req, "GET /%s HTTP/1.0\r\n", req_files[rand()%file_n]);
         printf("thread %d send request : %s", tid,req);
@@ -138,10 +119,8 @@ void *worker_job(int tid) {
             recv_len+=recv_cnt;
         }
         printf("thread %d finish %d/%d received %d bytes\n", tid, i + 1, rep, recv_len);
-//        pthread_mutex_lock(&mutex);
-        close(cli_socket);
-//        pthread_mutex_unlock(&mutex);
     }
     printf("thread %d exit\n", tid);
+    close(cli_socket);
     pthread_exit((void *) 0);
 }

@@ -164,9 +164,6 @@ void *worker_job(int tid) {
         }
     }
 }
-
-}
-
 #define SERVER_NAME "ANGJIN"
 #define SERVER_URL "http://www.github.com/angjin"
 #define PROTOCOL "HTTP/1.0"
