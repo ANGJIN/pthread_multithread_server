@@ -1,4 +1,0 @@
-/Users/youngjin/Google Drive/Docs/병렬분산컴퓨팅 (1)/project2/multithreading_server/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/youngjin/Google Drive/Docs/병렬분산컴퓨팅 (1)/project2/multithreading_server/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/youngjin/Google Drive/Docs/병렬분산컴퓨팅 (1)/project2/multithreading_server/cmake-build-debug/CMakeFiles/client.dir
-/Users/youngjin/Google Drive/Docs/병렬분산컴퓨팅 (1)/project2/multithreading_server/cmake-build-debug/CMakeFiles/server.dir
