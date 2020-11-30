@@ -147,8 +147,9 @@ void *worker_job(int tid) {
             } else { /* Get reqeust */
                 int client_fd = epoll_events[i].data.fd;
                 char buf[10000];
-
-                if (read(client_fd, &buf, sizeof(buf)) == 0) { /* disconnect */
+                int req_len = read(client_fd, &buf, sizeof(buf));
+                printf("thread %d get req : %s", tid, buf);
+                if ( req_len == 0) { /* disconnect */
                     close(client_fd);
                     epoll_ctl(epoll_fd, EPOLL_CTL_DEL, client_fd, NULL);
                 } else { /* process request */
