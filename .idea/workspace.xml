@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="multithreading_server" targetName="server_epoll" />
+      <config projectName="multithreading_server" targetName="client" />
+      <config projectName="multithreading_server" targetName="server" />
+    </generated>
+  </component>
+  <component name="CMakeSettings" AUTO_RELOAD="true">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="442f0eee-1262-4d42-8c8b-61c185bb6cb7" name="Default Changelist" comment="??" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTTP Request" />
+        <option value="CMakeLists.txt" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="KEEP" />
+  </component>
+  <component name="ProjectId" id="1kpP4nRmudZw7ws1Z2GfjJAY9r5" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="cf.first.check.clang-format" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/cmake-build-debug/server" />
+    <property name="nodejs.jest.jest_package" value="" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="CPPToolchains" />
+  </component>
+  <component name="RunManager" selected="CMake Application.client">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" WORKING_DIR="file://$CMakeCurrentBuildDir$" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_PATH="$PROJECT_DIR$/server" EXPLICIT_BUILD_TARGET_NAME="all">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="client" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="20 10 ../request_list.txt" REDIRECT_INPUT="false" WORKING_DIR="file://$CMakeCurrentBuildDir$" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="multithreading_server" RUN_TARGET_NAME="client" EXPLICIT_BUILD_TARGET_NAME="all">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="server" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="4000 10" REDIRECT_INPUT="false" WORKING_DIR="file://$CMakeCurrentBuildDir$" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_PATH="$PROJECT_DIR$/cmake-build-debug/server" EXPLICIT_BUILD_TARGET_NAME="all">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="server_epoll" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" WORKING_DIR="file://$CMakeCurrentBuildDir$" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="multithreading_server" RUN_TARGET_NAME="server_epoll" EXPLICIT_BUILD_TARGET_NAME="all">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Nosetests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Twisted Trial">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="py.test">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="CMake Application.client" />
+      <item itemvalue="CMake Application.server" />
+      <item itemvalue="CMake Application.server_epoll" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="442f0eee-1262-4d42-8c8b-61c185bb6cb7" name="Default Changelist" comment="" />
+      <created>1606394371187</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1606394371187</updated>
+      <workItem from="1606394372319" duration="752000" />
+      <workItem from="1606396017588" duration="6868000" />
+      <workItem from="1606458370071" duration="5523000" />
+      <workItem from="1606465919511" duration="4412000" />
+      <workItem from="1606534914894" duration="98000" />
+      <workItem from="1606545363134" duration="9688000" />
+      <workItem from="1606555435575" duration="5298000" />
+      <workItem from="1606561188857" duration="153000" />
+      <workItem from="1606561482281" duration="291000" />
+      <workItem from="1606623628234" duration="320000" />
+      <workItem from="1606639186630" duration="148000" />
+      <workItem from="1606641840682" duration="4226000" />
+      <workItem from="1606649817847" duration="4187000" />
+      <workItem from="1606654043262" duration="8328000" />
+      <workItem from="1606662608376" duration="747000" />
+      <workItem from="1606663359869" duration="1000" />
+      <workItem from="1606697466012" duration="8975000" />
+    </task>
+    <task id="LOCAL-00001" summary="initial commit">
+      <created>1606396286537</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1606396286537</updated>
+    </task>
+    <task id="LOCAL-00002" summary="throw?">
+      <created>1606535128771</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1606535128771</updated>
+    </task>
+    <task id="LOCAL-00003" summary="server 구현 완료">
+      <created>1606555031750</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1606555031751</updated>
+    </task>
+    <task id="LOCAL-00004" summary="add big html">
+      <created>1606555962328</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1606555962328</updated>
+    </task>
+    <task id="LOCAL-00005" summary="client code">
+      <created>1606560050620</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1606560050620</updated>
+    </task>
+    <task id="LOCAL-00006" summary="print received count">
+      <created>1606560170610</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1606560170610</updated>
+    </task>
+    <task id="LOCAL-00007" summary="default port changed">
+      <created>1606623720565</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1606623720565</updated>
+    </task>
+    <task id="LOCAL-00008" summary="client print code delete">
+      <created>1606623864984</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1606623864984</updated>
+    </task>
+    <task id="LOCAL-00009" summary="epoll server">
+      <created>1606645716710</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1606645716710</updated>
+    </task>
+    <task id="LOCAL-00010" summary="detach created threads">
+      <created>1606650040254</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1606650040254</updated>
+    </task>
+    <task id="LOCAL-00011" summary="show execute time in client code">
+      <created>1606650565738</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1606650565738</updated>
+    </task>
+    <task id="LOCAL-00012" summary="포기">
+      <created>1606662670507</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1606662670507</updated>
+    </task>
+    <task id="LOCAL-00013" summary="README.md">
+      <created>1606663337959</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1606663337959</updated>
+    </task>
+    <task id="LOCAL-00014" summary="일반 구현 완료한듯">
+      <created>1606702658969</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1606702658969</updated>
+    </task>
+    <task id="LOCAL-00015" summary="client code fd size 제거">
+      <created>1606702946772</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1606702946772</updated>
+    </task>
+    <task id="LOCAL-00016" summary="epoll code 수정">
+      <created>1606703340228</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1606703340228</updated>
+    </task>
+    <task id="LOCAL-00017" summary="epoll client code">
+      <created>1606703903448</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1606703903448</updated>
+    </task>
+    <task id="LOCAL-00018" summary="epoll server modify">
+      <created>1606704287619</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1606704287619</updated>
+    </task>
+    <task id="LOCAL-00019" summary="epoll server modify">
+      <created>1606704489389</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1606704489390</updated>
+    </task>
+    <task id="LOCAL-00020" summary="epoll server modify">
+      <created>1606704725886</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1606704725886</updated>
+    </task>
+    <task id="LOCAL-00021" summary="close fd from server">
+      <created>1606705000210</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1606705000210</updated>
+    </task>
+    <task id="LOCAL-00022" summary="client code connect in loop">
+      <created>1606705422963</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1606705422963</updated>
+    </task>
+    <task id="LOCAL-00023" summary="disconnect code delete">
+      <created>1606705552090</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1606705552090</updated>
+    </task>
+    <task id="LOCAL-00024" summary="restore disconnect code">
+      <created>1606705617660</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1606705617660</updated>
+    </task>
+    <task id="LOCAL-00025" summary="docker">
+      <created>1606706515998</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1606706515998</updated>
+    </task>
+    <task id="LOCAL-00026" summary="??">
+      <created>1606706871228</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1606706871228</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="HEAD" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/master" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="master" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="initial commit" />
+    <MESSAGE value="throw?" />
+    <MESSAGE value="server 구현 완료" />
+    <MESSAGE value="add big html" />
+    <MESSAGE value="client code" />
+    <MESSAGE value="print received count" />
+    <MESSAGE value="default port changed" />
+    <MESSAGE value="client print code delete" />
+    <MESSAGE value="epoll server" />
+    <MESSAGE value="detach created threads" />
+    <MESSAGE value="show execute time in client code" />
+    <MESSAGE value="포기" />
+    <MESSAGE value="README.md" />
+    <MESSAGE value="일반 구현 완료한듯" />
+    <MESSAGE value="client code fd size 제거" />
+    <MESSAGE value="epoll code 수정" />
+    <MESSAGE value="epoll client code" />
+    <MESSAGE value="epoll server modify" />
+    <MESSAGE value="close fd from server" />
+    <MESSAGE value="client code connect in loop" />
+    <MESSAGE value="disconnect code delete" />
+    <MESSAGE value="restore disconnect code" />
+    <MESSAGE value="docker" />
+    <MESSAGE value="??" />
+    <option name="LAST_COMMIT_MESSAGE" value="??" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="320" y="107" key="#Plugins" timestamp="1606555417306">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state x="320" y="107" key="#Plugins/0.25.1440.875@0.25.1440.875" timestamp="1606555417306" />
+    <state x="184" y="121" width="1904" height="1055" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606702282792">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state x="245" y="114" width="1428" height="890" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606534995020" />
+    <state x="184" y="121" width="1071" height="706" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1440.875@0.25.1440.875" timestamp="1606702282792" />
+    <state x="16" y="25" width="1904" height="1055" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1920.1055@0.25.1920.1055" timestamp="1606663005085" />
+    <state x="861" y="298" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606706152017">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state x="1203" y="324" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1606534976482" />
+    <state x="861" y="298" key="#com.intellij.fileTypes.FileTypeChooser/0.25.1440.875@0.25.1440.875" timestamp="1606706152017" />
+    <state x="507" y="183" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1606465696109">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state x="507" y="183" key="#com.intellij.ide.macro.MacrosDialog/0.25.1440.875@0.25.1440.875" timestamp="1606465696109" />
+    <state x="739" y="301" key="FileChooserDialogImpl" timestamp="1606534992091">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="739" y="301" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1606534992091" />
+    <state width="1398" height="222" key="GridCell.Tab.0.bottom" timestamp="1606705689151">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state width="1398" height="222" key="GridCell.Tab.0.bottom/0.25.1440.875@0.25.1440.875" timestamp="1606705689151" />
+    <state width="918" height="282" key="GridCell.Tab.0.bottom/0.25.1920.1055@0.25.1920.1055" timestamp="1606662604530" />
+    <state width="1398" height="222" key="GridCell.Tab.0.center" timestamp="1606705689150">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state width="1398" height="222" key="GridCell.Tab.0.center/0.25.1440.875@0.25.1440.875" timestamp="1606705689150" />
+    <state width="918" height="282" key="GridCell.Tab.0.center/0.25.1920.1055@0.25.1920.1055" timestamp="1606662604529" />
+    <state width="1398" height="222" key="GridCell.Tab.0.left" timestamp="1606705689149">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state width="1398" height="222" key="GridCell.Tab.0.left/0.25.1440.875@0.25.1440.875" timestamp="1606705689149" />
+    <state width="918" height="282" key="GridCell.Tab.0.left/0.25.1920.1055@0.25.1920.1055" timestamp="1606662604529" />
+    <state width="1398" height="222" key="GridCell.Tab.0.right" timestamp="1606705689150">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state width="1398" height="222" key="GridCell.Tab.0.right/0.25.1440.875@0.25.1440.875" timestamp="1606705689150" />
+    <state width="918" height="282" key="GridCell.Tab.0.right/0.25.1920.1055@0.25.1920.1055" timestamp="1606662604529" />
+    <state width="1398" height="276" key="GridCell.Tab.1.bottom" timestamp="1606702422419">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state width="1398" height="276" key="GridCell.Tab.1.bottom/0.25.1440.875@0.25.1440.875" timestamp="1606702422419" />
+    <state width="1398" height="276" key="GridCell.Tab.1.center" timestamp="1606702422419">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state width="1398" height="276" key="GridCell.Tab.1.center/0.25.1440.875@0.25.1440.875" timestamp="1606702422419" />
+    <state width="1398" height="276" key="GridCell.Tab.1.left" timestamp="1606702422419">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state width="1398" height="276" key="GridCell.Tab.1.left/0.25.1440.875@0.25.1440.875" timestamp="1606702422419" />
+    <state width="1398" height="276" key="GridCell.Tab.1.right" timestamp="1606702422419">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state width="1398" height="276" key="GridCell.Tab.1.right/0.25.1440.875@0.25.1440.875" timestamp="1606702422419" />
+    <state x="229" y="98" key="SettingsEditor" timestamp="1606465391785">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state x="229" y="98" key="SettingsEditor/0.25.1440.875@0.25.1440.875" timestamp="1606465391785" />
+    <state x="320" y="195" key="Vcs.Push.Dialog.v2" timestamp="1606706906268">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state x="320" y="195" key="Vcs.Push.Dialog.v2/0.25.1440.875@0.25.1440.875" timestamp="1606706906268" />
+    <state x="427" y="230" key="Vcs.Push.Dialog.v2/0.25.1920.1055@0.25.1920.1055" timestamp="1606663339601" />
+    <state x="573" y="391" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606706986379">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state x="573" y="391" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.25.1440.875@0.25.1440.875" timestamp="1606706986379" />
+    <state x="764" y="466" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.25.1920.1055@0.25.1920.1055" timestamp="1606655694167" />
+    <state x="0" y="25" width="720" height="875" key="dock-window-1" timestamp="1606557950893">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state x="0" y="25" width="720" height="875" key="dock-window-1/0.25.1440.875@0.25.1440.875" timestamp="1606557950893" />
+    <state x="804" y="252" key="refactoring.ChangeSignatureDialog" timestamp="1606556072897">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state x="804" y="252" key="refactoring.ChangeSignatureDialog/0.25.1440.875@0.25.1440.875" timestamp="1606556072897" />
+    <state x="385" y="224" width="670" height="676" key="search.everywhere.popup" timestamp="1606555396492">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state x="385" y="224" width="670" height="676" key="search.everywhere.popup/0.25.1440.875@0.25.1440.875" timestamp="1606555396492" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="CMakeRunConfiguration">
+        <watch expression="head" language="ObjectiveC" />
+        <watch expression="tail" language="ObjectiveC" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>
