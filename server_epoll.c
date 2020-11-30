@@ -156,7 +156,7 @@ void *worker_job(int tid) {
                 } else { /* process request */
                     printf("client req : %s\n", buf);
                     httpd(buf, client_fd);
-
+                    close(client_fd);
                     printf("thread %d finish\n", tid);
                 }
             }
@@ -220,7 +220,7 @@ httpd(char *command, int socket) {
         strcpy(path, tmp_path);
         file = path + strlen(PATH_DEFAULT);
     }
-    printf("path : %s\nfile : %s\n", path, file);
+//    printf("path : %s\nfile : %s\n", path, file);
 
     len = strlen(file);
     if (file[0] == '/' || strcmp(file, "..") == 0 || strncmp(file, "../", 3) == 0 ||
