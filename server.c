@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <sys/socket.h>
 #include <sys/stat.h>
+#include <sys/resource.h>
 #include <netinet/in.h>
 #include <pthread.h>
 #include <stdlib.h>
@@ -29,33 +30,37 @@ typedef struct myNode {
 
 npt head = NULL, tail = NULL;
 
-int isEmpty() {
-    if (head == NULL) {
-        return 1;
-    }
-    return 0;
-}
-
 void enqueue(int socket, char* command) {
+    pthread_mutex_lock(&mutex);
     npt new = (npt) malloc(sizeof(node));
     new->client_socket = socket;
     new->next = NULL;
     strcpy(new->command, command);
-
-    if (isEmpty()) {
-        head = tail = new;
+    if (head==NULL) {
+        head = new;
+        tail = new;
     } else {
         tail->next = new;
+        tail = new;
     }
+    printf("enqueued command %s",command);
+    pthread_mutex_unlock(&mutex);
+    pthread_cond_signal(&cond);
 }
 
-npt dequeue() {
-    if (isEmpty())
-        return NULL;
+npt dequeue(int tid) {
+
+    pthread_mutex_lock(&mutex);
+    while (head==NULL) {
+        printf("thread %d wait\n", tid);
+        pthread_cond_wait(&cond, &mutex);
+        printf("thread %d up!\n", tid);
+    }
 
     npt top = head;
+    printf("thread %d dequeued command %s", tid, top->command);
     head = top->next;
-
+    pthread_mutex_unlock(&mutex);
     return top;
 }
 
@@ -75,6 +80,17 @@ int main(int argc, char **argv) {
         printf("ERROR: max thread pool size exceeded\n max thread pool size is %d\n", MAX_POOL_SIZE);
         return -1;
     }
+
+    struct rlimit rlp;
+
+    getrlimit(RLIMIT_NOFILE, &rlp);
+    printf("before %d %d\n", rlp.rlim_cur, rlp.rlim_max);
+
+    rlp.rlim_cur = 131072;
+    setrlimit(RLIMIT_NOFILE, &rlp);
+
+    getrlimit(RLIMIT_NOFILE, &rlp);
+    printf("after %d %d\n", rlp.rlim_cur, rlp.rlim_max);
 
     // create socket
     int serv_socket;
@@ -139,29 +155,23 @@ int main(int argc, char **argv) {
                 exit(0);
             }
             enqueue(client_socket, command);
-            pthread_cond_signal(&cond);
+//            pthread_cond_signal(&cond);
         }
     }
     return 0;
 }
 
-
+int recv_cnt =0;
 void *worker_job(int tid) {
     printf("create thread %d\n", tid);
     int client_socket;
     npt entry;
     while (1) {
-        pthread_mutex_lock(&mutex);
-        while (isEmpty()) {
-            printf("thread %d wait\n", tid);
-            pthread_cond_wait(&cond, &mutex);
-            printf("thread %d up!\n", tid);
-        }
-        entry = dequeue();
-        pthread_mutex_unlock(&mutex);
+        entry = dequeue(tid);
+//        recv_cnt++;
+//        printf("recv_cnt : %d\n", recv_cnt);
 
         client_socket = entry->client_socket;
-        printf("client req : %s", entry->command);
         httpd(entry->command, client_socket);
 
         close(client_socket);

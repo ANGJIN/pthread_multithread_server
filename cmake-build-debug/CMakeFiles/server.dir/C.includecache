@@ -13,6 +13,8 @@ sys/socket.h
 -
 sys/stat.h
 -
+sys/resource.h
+-
 netinet/in.h
 -
 pthread.h

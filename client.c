@@ -4,6 +4,7 @@
 #include <pthread.h>
 #include <string.h>
 #include <sys/socket.h>
+#include <sys/resource.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <unistd.h>
@@ -18,7 +19,8 @@ char *ip = IP_DEFAULT;
 
 void *worker_job(int tid);
 
-//pthread_mutex_t mutex;
+pthread_mutex_t mutex;
+int req_cnt=0;
 
 int main(int argc, char **argv) {
     clock_t startTime, endTime;
@@ -32,6 +34,17 @@ int main(int argc, char **argv) {
 
     num_thread = atoi(argv[1]);
     rep = atoi(argv[2]);
+
+    struct rlimit rlp;
+
+    getrlimit(RLIMIT_NOFILE, &rlp);
+    printf("before %d %d\n", rlp.rlim_cur, rlp.rlim_max);
+
+    rlp.rlim_cur = 2048;
+    setrlimit(RLIMIT_NOFILE, &rlp);
+
+    getrlimit(RLIMIT_NOFILE, &rlp);
+    printf("after %d %d\n", rlp.rlim_cur, rlp.rlim_max);
 
     srand((time(NULL)));
 
@@ -84,7 +97,7 @@ void *worker_job(int tid) {
 
     for (i = 0; i < rep; i++) {
         printf("thread %d start %d/%d\n", tid, i + 1, rep);
-//        sleep(rand() % 5);
+        sleep(rand() % 5);
 
         // create socket
 //        pthread_mutex_lock(&mutex);
@@ -115,6 +128,11 @@ void *worker_job(int tid) {
         sprintf(req, "GET /%s HTTP/1.0\r\n", req_files[rand()%file_n]);
         printf("thread %d send request : %s", tid,req);
         write(cli_socket, req, strlen(req));
+
+        pthread_mutex_lock(&mutex);
+        req_cnt++;
+        printf("req_cnt = %d\n", req_cnt);
+        pthread_mutex_unlock(&mutex);
 
         printf("thread %d start receive\n", tid);
         int recv_len=0, recv_cnt;

@@ -19,6 +19,8 @@ string.h
 -
 sys/socket.h
 -
+sys/resource.h
+-
 netinet/in.h
 -
 arpa/inet.h
